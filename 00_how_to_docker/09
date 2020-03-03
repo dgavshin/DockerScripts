@@ -1,0 +1,7 @@
+docker pull debian
+docker run --name deb -dit --rm debian
+
+docker exec deb apt update
+docker exec deb apt upgrade -y
+docker exec deb apt install gcc -y
+
