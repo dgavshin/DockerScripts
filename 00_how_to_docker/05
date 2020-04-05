@@ -1,1 +1,3 @@
+# Launch thehello-worldcontainer, and make sure that it prints its welcome mes-sage, then leaves it
+
 docker run hello-world

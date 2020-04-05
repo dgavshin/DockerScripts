@@ -1,1 +1,4 @@
+# Increase the number of copies of themarinesservice up to twenty,
+# because there’snever enough Marines to eliminate Zerg
+
 docker service scale marines=20

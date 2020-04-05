@@ -1,3 +1,17 @@
-docker pull wordpress
+# Launch awordpresscontainer as a background task, just for fun. 
+# The containershould be namedlair, its 80 port should be bound to the 8080 
+# port of the virtualmachine, and it should be able to use thespawning-poolcontainer as a databaseservice. 
+# You can try to accesslairon your machine via a web browser, with theIP address of 
+# the virtual machine as a URL.Congratulations, you just deployed a functional Wordpress website in two com-mands
 
-docker run --name lair --link spawning-pool -p 8081:80 -e WORDPRESS_DB_HOST=spawning-pool:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Kerrigan -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_TABLE_PREFIX=wp_ -v wordpress:/var/www/html -d wordpress
+docker pull wordpress
+docker run  --name lair \
+            --link spawning-pool \
+            -p 8081:80 \
+            -e WORDPRESS_DB_HOST=spawning-pool:3306 \
+            -e WORDPRESS_DB_USER=root \
+            -e WORDPRESS_DB_PASSWORD=Kerrigan \
+            -e WORDPRESS_DB_NAME=wordpress \
+            -e WORDPRESS_TABLE_PREFIX=wp_ \
+            -v wordpress:/var/www/html \
+            -d wordpress

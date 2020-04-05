@@ -1,3 +1,7 @@
+# Launch a shell from analpinecontainer, and make sure that you 
+# can interactdirectly with the container via your terminal, 
+# and that the container deletes itselfonce the shell’s execution is done.
+
 docker pull alpine
 docker run -it --rm alpine
 

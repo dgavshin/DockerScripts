@@ -1,1 +1,11 @@
-docker run --name roach_warden -d --link spawning-pool:db -p 8080:80 -v phpmyadmin:/var/www/html phpmyadmin/phpmyadmin
+# Launch aphpmyadmincontainer as a background task. 
+# It should be namedroach-warden,its 80 port should be 
+# bound to the 8081 port of the virtual machine 
+# and it shouldbe able to explore the database stored in 
+# the spawning-poolcontainer.
+
+docker run  --name roach_warden -d \
+            --link spawning-pool:db \
+            -p 8080:80 \
+            -v phpmyadmin:/var/www/html \
+            phpmyadmin/phpmyadmin

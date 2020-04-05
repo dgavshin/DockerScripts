@@ -1,1 +1,3 @@
+# Create an overlay-type internal network that you will nameovermind.
+
 docker network create -d overlay overmind

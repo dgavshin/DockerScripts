@@ -1,1 +1,5 @@
+# Get the internal IP address of theo
+# verlord container without starting its shell 
+# and in one command.
+
 docker inspect -f '{{.NetworkSettings.IPAddress}}' overlord

@@ -1,1 +1,4 @@
+#!/bin/sh
+# Create a virtual machine withdocker-machineusing thevirtualboxdriver, andnamedChar.
+
 docker-machine create --driver virtualbox Char
