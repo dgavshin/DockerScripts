@@ -1,25 +1,26 @@
 FROM debian:10
 
 RUN apt update && \
-	apt install tar \
-				git \
-				wget \
-				curl \
-				make \
-				python2.7 \
-				python-pip \
-				python3.7 \
-				python3-pip \
-				cowsay \
-				golang -y
+	apt install -y tar \
+					git \
+					wget \
+					curl \
+					make \
+					python2.7 \
+					python-pip \
+					python3.7 \
+					python3-pip \
+					cowsay \
+					golang \
+					zsh && \
+					echo "y" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 RUN apt install -y libcurl4-openssl-dev libssl-dev
 
-RUN python3.7 -m pip install pycryptodome \
-							 ipython \
-							 requests \
-							 pwntools \
-							 html
+RUN pip3 install	ipython \
+					requests \
+					pwntools
+RUN pip install		html
 
 RUN echo -e " \
 ╔═══╗╔══╗╔═══╗╔══╗╔╗──╔╗╔══╗ \n\
@@ -55,6 +56,7 @@ RUN git clone https://github.com/nahamsec/JSParser.git && \
 	pip install -r requirements.txt && \
 	python setup.py install && \
 	chmod +x handler.py && \
+	sed -i '1s/^/#!\/usr\/bin\/env python\n/' handler.py && \
 	ln -s /opt/find_api_links/JSParser/handler.py /usr/bin/jsparser
 
 
@@ -88,5 +90,9 @@ RUN go build && \
 	make linux && \
 	ln -s /root/go/src/github.com/OJ/gobuster/build/gobuster-linux-amd64/gobuster /usr/bin/gobuster
 
-WORKDIR /opt
+WORKDIR /opt/
+RUN git clone https://github.com/danielmiessler/SecLists wordlists
+
 RUN /usr/games/cowsay "done!"
+
+ENTRYPOINT zsh

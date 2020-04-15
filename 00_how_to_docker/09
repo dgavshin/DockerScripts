@@ -5,9 +5,9 @@
 # For this exercise, you should only specify the commands to be run directly in the container.
 
 docker pull debian
-docker run --name deb -dit --rm debian
+docker run --name deb -it --rm debian
 
 docker exec deb apt update
 docker exec deb apt upgrade -y
 docker exec deb apt install gcc git  -y
-
+docker exec -it deb bash

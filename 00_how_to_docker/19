@@ -8,11 +8,18 @@
 # via curl or a web browser, the IP address of yourvirtual machine on the 
 # 3000 port. You will also list all the necessary commands in your repository.
 
-docker run  --name Abathur \
-			-v ~/:/root \
-			-p 3000:3000 \
-			-dit python:2-slim
-
-docker exec Abathur bash -c 'pip install Flask'
-docker exec Abathur sh -c "echo 'from flask import Flask\napp = Flask(__name__)\n@app.route(\"/\")\ndef hello_world():\n\treturn \"<h1>Hello W0r1d</h1>\"' > ~/app.py"
-docker exec -e FLASK_APP=/root/app.py Abathur flask run --host=0.0.0.0 --port 3000
+docker-machine ssh Char \
+'echo "from flask import Flask
+app = Flask(__name__)
+@app.route('\''/'\'')
+def hello_world():
+    return '\''<h1>Hello, World!</h1>'\''" > hello.py'
+	
+docker container run --name Abathur \
+	--mount type=bind,source=/home/docker,destination=/root \
+	--workdir /root \
+	--publish 3000:3000 \
+	--env FLASK_APP=hello.py \
+	--detach \
+	python:2-slim \
+	bash -c 'pip install flask && flask run --host=0.0.0.0 --port=3000'

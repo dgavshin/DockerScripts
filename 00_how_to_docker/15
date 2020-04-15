@@ -6,6 +6,6 @@
 
 docker run  --name roach_warden -d \
             --link spawning-pool:db \
-            -p 8080:80 \
+            -p 8081:80 \
             -v phpmyadmin:/var/www/html \
             phpmyadmin/phpmyadmin

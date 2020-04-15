@@ -5,7 +5,9 @@
 # will be on the overmind network.
 
 docker service create	--replicas 2 \
+						--name engineering-bay \
 						-dt \
 						-e OC_USERNAME=root \
 						-e OC_PASSWD=Kerrigan \
+						--network overmind \
 						42school/engineering-bay
