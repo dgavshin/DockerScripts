@@ -12,6 +12,7 @@ RUN apt update && \
 					python3-pip \
 					cowsay \
 					golang \
+					vim \
 					zsh && \
 					echo "y" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -56,7 +57,7 @@ RUN git clone https://github.com/nahamsec/JSParser.git && \
 	pip install -r requirements.txt && \
 	python setup.py install && \
 	chmod +x handler.py && \
-	sed -i '1s/^/#!\/usr\/bin\/env python\n/' handler.py && \
+	sed -i '1s/^/#!\/usr\/bin\/env python3\n/' handler.py && \
 	ln -s /opt/find_api_links/JSParser/handler.py /usr/bin/jsparser
 
 
@@ -91,7 +92,7 @@ RUN go build && \
 	ln -s /root/go/src/github.com/OJ/gobuster/build/gobuster-linux-amd64/gobuster /usr/bin/gobuster
 
 WORKDIR /opt/
-RUN git clone https://github.com/danielmiessler/SecLists wordlists
+# RUN git clone https://github.com/danielmiessler/SecLists wordlists
 
 RUN /usr/games/cowsay "done!"
 
