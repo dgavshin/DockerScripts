@@ -1,4 +1,4 @@
-# docker-1
+# Docker scripts
 
 The aim of this project is learning basics of containerization. 
 
